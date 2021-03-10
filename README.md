@@ -1,5 +1,5 @@
 <h4 align="center">
-  🚀 NextLevelWeek - Booster
+  🚀 Pokedex
 </h4>
 
 <p align="center">
