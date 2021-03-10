@@ -1,15 +1,16 @@
-import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import HomeScreen from '../pages/Home'
-import { IPokemon } from '../types/types'
+import HomeScreen from '../pages/Home';
+import DetailsScreen from '../pages/PokemonInfo';
+import { IPokemon } from '../types/types';
 
 type StackParamList = {
-  Home: undefined
-  PokemonInfo: IPokemon
-}
+  Home: undefined;
+  PokemonInfo: IPokemon;
+};
 
-const Stack = createStackNavigator<StackParamList>()
+const Stack = createStackNavigator<StackParamList>();
 
 export default function Routes() {
   return (
@@ -29,6 +30,11 @@ export default function Routes() {
         component={HomeScreen}
         options={{ title: 'Pokedex' }}
       />
+      <Stack.Screen
+        name="PokemonInfo"
+        component={DetailsScreen}
+        options={{ title: 'Pokedex' }}
+      />
     </Stack.Navigator>
-  )
+  );
 }
