@@ -1,11 +1,11 @@
 import React from 'react';
-import { Container } from '../../components/container.styles';
-import { Row } from '../../components/rowinfo.styles';
+import { Container } from '../../components/container.component';
+import { Row } from '../../components/row.component';
 
-import { Details, DetailsCard, Image } from './styles';
-import { Label } from '../../components/label.styles';
+import { DetailsCard, DetailsContainer, Image, TypeInfo } from './styles';
+import { Label } from '../../components/label.component';
 import { getColorTypePokemon } from '../../utils/getColorByType';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { IPokemon } from '../../types/types';
 
 const round = (value: number) => {
@@ -16,12 +16,14 @@ export default function PokemonDetails() {
   const route = useRoute<RouteProp<Record<string, IPokemon>, string>>();
 
   const { id, image_url, height, weight, types, name } = route.params;
+  const navigation = useNavigation();
 
   let color = getColorTypePokemon(types[0].name);
+  navigation.setOptions({ headerStyle: { backgroundColor: color } });
 
   return (
     <Container bgColor={color}>
-      <Details>
+      <DetailsContainer>
         <Row>
           <Label size={16} weight="bold">
             {name}
@@ -35,11 +37,23 @@ export default function PokemonDetails() {
         />
         <DetailsCard>
           <Row>
+            {types.map(type => {
+              return (
+                <TypeInfo
+                  bgColor={getColorTypePokemon(type.name)}
+                  isDoubleType={types.length >= 2}
+                >
+                  <Label>{type.name}</Label>
+                </TypeInfo>
+              );
+            })}
+          </Row>
+          <Row>
             <Label text={'#2b292c'}>Height: {round(height)} M</Label>
             <Label text={'#2b292c'}>Weight: {round(weight)} Kg</Label>
           </Row>
         </DetailsCard>
-      </Details>
+      </DetailsContainer>
     </Container>
   );
 }

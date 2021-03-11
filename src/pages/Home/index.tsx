@@ -3,7 +3,7 @@ import React from 'react';
 import { useGetPokemons } from '../../hooks/use_queries';
 import Pokemons from '../../components/Pokemons';
 
-import { Container } from '../../components/container.styles';
+import { Container } from '../../components/container.component';
 
 export default function Home() {
   const data = useGetPokemons();

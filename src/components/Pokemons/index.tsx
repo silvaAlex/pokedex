@@ -2,15 +2,14 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Button, Image, Pokeball } from './styles';
-import { Card } from '../card.styles';
-import { Row } from '../rowinfo.styles';
-import { Label } from '../label.styles';
+import { Card } from '../card.component';
+import { Row } from '../row.component';
+import { Label } from '../label.component';
 
 import { getColorTypePokemon } from '../../utils/getColorByType';
 
 export default function Pokemons({ data }: any) {
   const navigation = useNavigation();
-
   return (
     <FlatList
       data={data}
